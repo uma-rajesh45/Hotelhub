@@ -8,7 +8,7 @@ interface searchParams {
   state: string;
   city: string;
 }
-export default async function Home(searchParams:searchParams) {
+const Home=async (searchParams:searchParams)=> {
   const hotels = await getAllHotels(searchParams);
  
   if(!hotels) return <div>No Hotels Found :{'('}</div>
@@ -20,3 +20,4 @@ export default async function Home(searchParams:searchParams) {
     </div>
   );
 }
+export default Home;
