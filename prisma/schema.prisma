@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextIndex"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Hotel{
+  id String @id @default(uuid())
+  userid String 
+  title String @db.Text
+  description String @db.Text
+  image String 
+  country String
+  state String 
+  city String 
+  locationdescription String @db.Text
+  gym Boolean @default(false)
+  spa Boolean @default(false)
+  bar Boolean @default(false)
+  laundry Boolean @default(false)
+  restaurant Boolean @default(false)
+  shopping Boolean @default(false)
+  freeparking Boolean @default(false)
+  bikerental Boolean @default(false)
+  freewifi Boolean @default(false)
+  movienights Boolean @default(false)
+  swimmingpool Boolean @default(false)
+  coffeshop Boolean @default(false)
+  addedat DateTime @default(now())
+  updatedat DateTime @default(now())
+  rooms Room[]
+  booking Booking[]
+
+}
+model Room{
+  id String @id @default(uuid())
+  title String
+  description String @db.Text
+  bedcount Int @default(0)
+  guestcount Int @default(0)
+  bathroomcount Int @default(0)
+  kingbed Int @default(0)
+  queenbed Int @default(0)
+  image String
+  breakfastprice Int
+  roomprice Int
+  roomservice Boolean @default(false)
+  tv Boolean @default(false)
+  balcony Boolean @default(false)
+  freewifi Boolean @default(false)
+  cityview Boolean @default(false)
+  oceanview Boolean @default(false)
+  forestview Boolean @default(false)
+  mountainview Boolean @default(false)
+  aircondition Boolean @default(false)
+  soundproofed Boolean @default(false)
+  hotelid String
+  hotel Hotel? @relation(fields: [hotelid],references: [id])
+booking Booking[]
+@@index([hotelid])
+}
+model Booking{
+  id String @id @default(uuid())
+  username String
+  useremail String
+  userid String
+  roomid String
+  hotelid String
+  hotelownerid String
+  startdate DateTime
+  enddate DateTime
+  breakfastincluded Boolean
+  currency String
+  totalprice Int
+  paymentstatus Boolean @default(false)
+  paymentintentid String @unique
+  bookedat DateTime @default(now())
+  hotel Hotel? @relation(fields: [hotelid],references: [id])
+  room Room? @relation(fields: [roomid],references: [id])
+  @@index([hotelid])
+}
