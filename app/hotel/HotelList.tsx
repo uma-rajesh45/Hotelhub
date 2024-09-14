@@ -47,7 +47,7 @@ const HotelList = ({ hotel }: HotelWithRooms) => {
       <LocationFilter />
       <div className="grid mt-10 grid-cols-1 lg:grid-cols-2 gap-8 overflow-hidden">
         {searchHotels?.map((hotel) => (
-          <div key={hotel?.id} className="min-w-[500px]">
+          <div key={hotel?.id}>
             <HotelCard hotel={hotel} />
           </div>
         ))}

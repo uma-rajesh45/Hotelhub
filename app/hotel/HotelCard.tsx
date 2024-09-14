@@ -32,17 +32,16 @@ const HotelCard = ({ hotel }: HotelWithRooms) => {
         isPathNameExists && `cursor-default`
       )}
     >
-      <div className="flex gap-2 bg-background/50 border border-primary/10 rounded-lg min-h-[300px]">
-        <div className="flex-1 aspect-square overflow-hidden relative min-w-[300px] h-[300px] rounded-s-lg">
+      <div className="flex gap-1 bg-background/50 border border-primary/10 rounded-lg min-h-[300px]">
           <Image
-            fill
+            height={300}
+            width={350}
             src={hotel?.image!}
             alt={hotel?.title!}
             priority
-            className="w-full h-full object-cover"
+            className="object-cover w-[180px] md:w-[300px] md:h-[300px]"
           />
-        </div>
-        <div className="flex-1 flex flex-col justify-between h-[210px] gap-1 p-1 py-2 text-sm">
+        <div className="flex flex-col justify-between h-[210px] gap-1 pr-4 py-2 text-sm">
           <h3 className="font-semibold text-xl">{hotel?.title}</h3>
           <div className="text-primary/90">
             {hotel?.description.substring(0, 45)}...

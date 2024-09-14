@@ -33,10 +33,10 @@ const Navbar = () => {
         ) : (
           <>
             <SignInButton>
-              <Button variant="secondary">Sign In</Button>
+              <Button variant="secondary" className="max-w-fit">Sign In</Button>
             </SignInButton>
             <SignUpButton>
-              <Button>Sign Up</Button>
+              <Button className="max-w-fit">Sign Up</Button>
             </SignUpButton>
           </>
         )}
